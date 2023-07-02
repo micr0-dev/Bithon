@@ -1,4 +1,4 @@
-# Bithon - The Limitation-Breeding Programming Language
+![Frame 1(4)](https://github.com/MiraslauKavaliou/Bithon/assets/26364458/e6b9b4fa-a445-47ab-add2-455035be7b71)
 
 Bithon is a dynamically-typed programming language designed with the principle that "limitation breeds creativity." Inspired by Python and Assembly, Bithon aims to provide simplicity and power while encouraging innovative problem-solving through constraints. This language is a work in progress, constantly evolving to fulfill its vision.
 
