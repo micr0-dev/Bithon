@@ -1,0 +1,24 @@
+prn "Prime Number Generator"
+
+prn "Enter the upper bound:"
+inp upper
+
+prn "Prime numbers between " 0 " and " upper " are:"
+
+lop num 1 upper
+    iff is_prime num
+        prn num
+
+def is_prime num
+    iff num eql 2 or num eql 3
+        ret true
+    iff num mod 2 eql 0 or num eql 1
+        ret false
+    els
+        lop i 3 sqrt num 2
+            iff num mod i eql 0
+                ret false
+        ret true
+
+def sqrt num
+    ret num pow 0.5
