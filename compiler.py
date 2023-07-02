@@ -20,6 +20,7 @@ def p_statements(p):
 
 def p_statement(p):
     '''statement : if_statement
+                 | if_else_statement
                  | def_statement
                  | loop_statement
                  | return_statement
@@ -33,8 +34,11 @@ def p_function_call(p):
     pass
 
 def p_if_statement(p):
-    '''if_statement : IFF expression block
-                    | IFF expression block else_statement'''
+    '''if_statement : IFF expression block'''
+    pass
+
+def p_if_else_statement(p):
+    '''if_else_statement : if_statement else_statement'''
     pass
 
 def p_else_statement(p):
@@ -47,7 +51,9 @@ def p_def_statement(p):
 
 def p_arg(p):
     '''arg : IDENT
-           | IDENT arg 
+           | STRING
+           | NUMBER
+           | arg IDENT
            | '''
     pass
 
@@ -57,7 +63,7 @@ def p_loop_statement(p):
 
 def p_expression_number(p):
     'expression : NUMBER'
-    p[0] = float(p[1])
+    p[0] = int(p[1])
 
 def p_expression_string(p):
     'expression : STRING'
@@ -67,37 +73,41 @@ def p_expression_bool(p):
     'expression : BOOL'
     p[0] = bool(p[1])
 
-def p_expression_not(p):
-    'expression : NOT expression'
-    p[0] = not p[2]
-
 def p_expression_ident(p):
     'expression : IDENT'
     p[0] = p[1]
 
+def p_expression_not(p):
+    'expression : NOT expression'
+    p[0] = not p[2]
+
+def p_expression_function_call(p):
+    'expression : function_call'
+    p[0] = p[1]
+
 def p_equal(p):
     'expression : expression EQUAL expression'
-    p[0] = p[1] == p[3]
+    pass
 
 def p_expression_plus(p):
     'expression : expression PLUS expression'
-    p[0] = p[1] + p[3]
+    pass
 
 def p_expression_minus(p):
     'expression : expression MINUS expression'
-    p[0] = p[1] - p[3]
+    pass
 
 def p_expression_mul(p):
     'expression : expression MUL expression'
-    p[0] = p[1] * p[3]
+    pass
 
 def p_expression_div(p):
     'expression : expression DIV expression'
-    p[0] = p[1] / p[3]
+    pass
 
 def p_expression_modulus(p):
     'expression : expression MODULUS expression'
-    p[0] = p[1] % p[3]
+    pass
 
 def p_expression_group(p):
     'expression : LPAREN expression RPAREN'
@@ -108,7 +118,7 @@ def p_return_statement(p):
     pass
 
 def p_expression_statement(p):
-    'expression_statement : expression NEWLINE'
+    'expression_statement : expression'
     p[0] = p[1]
 
 def p_error(p):
@@ -129,12 +139,13 @@ print( "Program: \n", program, "\n")
 
 print(parser.parse(program, lexer=lexer))
 
-# print("\n")
+print("\n")
 
-# lexer.input(program)
+lexer.input(program)
 
-# while True:
-#     tok = lexer.token()
-#     if not tok:
-#         break
-#     print(tok)
+while True:
+    tok = lexer.token()
+    if not tok:
+        break
+    print(tok)
+

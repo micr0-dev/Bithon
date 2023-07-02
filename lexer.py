@@ -40,7 +40,7 @@ t_ignore = ' '
 
 
 def t_NEWLINE(t):
-    r'\n+'
+    r'\n'
     t.lexer.lineno += len(t.value)
     t.lexer.indents_count = 0
     while True:  # Loop to count indents or dedents

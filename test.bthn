@@ -12,8 +12,10 @@ def fac n
     iff n eql 0
         ret 1
     els
-        ret n * fac n not 1
+        ret n * fac n not true
 
 def pnt n
     lop i 1 n
         prn i
+        iff i eql 5
+            ret true
