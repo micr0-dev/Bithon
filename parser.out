@@ -1,0 +1,1721 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statements
+Rule 2     block -> INDENT statements DEDENT
+Rule 3     statements -> statement
+Rule 4     statements -> statements statement
+Rule 5     statement -> if_statement
+Rule 6     statement -> def_statement
+Rule 7     statement -> loop_statement
+Rule 8     statement -> return_statement
+Rule 9     statement -> expression_statement
+Rule 10    statement -> function_call
+Rule 11    statement -> NEWLINE
+Rule 12    function_call -> IDENT arg
+Rule 13    if_statement -> IFF expression block
+Rule 14    if_statement -> IFF expression block else_statement
+Rule 15    else_statement -> ELS block
+Rule 16    def_statement -> DEF IDENT arg block
+Rule 17    arg -> IDENT
+Rule 18    arg -> IDENT arg
+Rule 19    arg -> <empty>
+Rule 20    loop_statement -> LOP IDENT expression expression block
+Rule 21    expression -> NUMBER
+Rule 22    expression -> STRING
+Rule 23    expression -> BOOL
+Rule 24    expression -> NOT expression
+Rule 25    expression -> IDENT
+Rule 26    expression -> expression EQUAL expression
+Rule 27    expression -> expression PLUS expression
+Rule 28    expression -> expression MINUS expression
+Rule 29    expression -> expression MUL expression
+Rule 30    expression -> expression DIV expression
+Rule 31    expression -> expression MODULUS expression
+Rule 32    expression -> LPAREN expression RPAREN
+Rule 33    return_statement -> RET expression
+Rule 34    expression_statement -> expression NEWLINE
+
+Terminals, with rules where they appear
+
+BOOL                 : 23
+DEDENT               : 2
+DEF                  : 16
+DIV                  : 30
+ELS                  : 15
+EQUAL                : 26
+IDENT                : 12 16 17 18 20 25
+IFF                  : 13 14
+INDENT               : 2
+LOP                  : 20
+LPAREN               : 32
+MINUS                : 28
+MODULUS              : 31
+MUL                  : 29
+NEWLINE              : 11 34
+NOT                  : 24
+NUMBER               : 21
+PLUS                 : 27
+RET                  : 33
+RPAREN               : 32
+STRING               : 22
+error                : 
+
+Nonterminals, with rules where they appear
+
+arg                  : 12 16 18
+block                : 13 14 15 16 20
+def_statement        : 6
+else_statement       : 14
+expression           : 13 14 20 20 24 26 26 27 27 28 28 29 29 30 30 31 31 32 33 34
+expression_statement : 9
+function_call        : 10
+if_statement         : 5
+loop_statement       : 7
+program              : 0
+return_statement     : 8
+statement            : 3 4
+statements           : 1 2 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statements
+    (3) statements -> . statement
+    (4) statements -> . statements statement
+    (5) statement -> . if_statement
+    (6) statement -> . def_statement
+    (7) statement -> . loop_statement
+    (8) statement -> . return_statement
+    (9) statement -> . expression_statement
+    (10) statement -> . function_call
+    (11) statement -> . NEWLINE
+    (13) if_statement -> . IFF expression block
+    (14) if_statement -> . IFF expression block else_statement
+    (16) def_statement -> . DEF IDENT arg block
+    (20) loop_statement -> . LOP IDENT expression expression block
+    (33) return_statement -> . RET expression
+    (34) expression_statement -> . expression NEWLINE
+    (12) function_call -> . IDENT arg
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NEWLINE         shift and go to state 10
+    IFF             shift and go to state 11
+    DEF             shift and go to state 13
+    LOP             shift and go to state 15
+    RET             shift and go to state 16
+    IDENT           shift and go to state 14
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    LPAREN          shift and go to state 21
+
+    program                        shift and go to state 1
+    statements                     shift and go to state 2
+    statement                      shift and go to state 3
+    if_statement                   shift and go to state 4
+    def_statement                  shift and go to state 5
+    loop_statement                 shift and go to state 6
+    return_statement               shift and go to state 7
+    expression_statement           shift and go to state 8
+    function_call                  shift and go to state 9
+    expression                     shift and go to state 12
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statements .
+    (4) statements -> statements . statement
+    (5) statement -> . if_statement
+    (6) statement -> . def_statement
+    (7) statement -> . loop_statement
+    (8) statement -> . return_statement
+    (9) statement -> . expression_statement
+    (10) statement -> . function_call
+    (11) statement -> . NEWLINE
+    (13) if_statement -> . IFF expression block
+    (14) if_statement -> . IFF expression block else_statement
+    (16) def_statement -> . DEF IDENT arg block
+    (20) loop_statement -> . LOP IDENT expression expression block
+    (33) return_statement -> . RET expression
+    (34) expression_statement -> . expression NEWLINE
+    (12) function_call -> . IDENT arg
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    $end            reduce using rule 1 (program -> statements .)
+    NEWLINE         shift and go to state 10
+    IFF             shift and go to state 11
+    DEF             shift and go to state 13
+    LOP             shift and go to state 15
+    RET             shift and go to state 16
+    IDENT           shift and go to state 14
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    LPAREN          shift and go to state 21
+
+    statement                      shift and go to state 22
+    if_statement                   shift and go to state 4
+    def_statement                  shift and go to state 5
+    loop_statement                 shift and go to state 6
+    return_statement               shift and go to state 7
+    expression_statement           shift and go to state 8
+    function_call                  shift and go to state 9
+    expression                     shift and go to state 12
+
+state 3
+
+    (3) statements -> statement .
+
+    NEWLINE         reduce using rule 3 (statements -> statement .)
+    IFF             reduce using rule 3 (statements -> statement .)
+    DEF             reduce using rule 3 (statements -> statement .)
+    LOP             reduce using rule 3 (statements -> statement .)
+    RET             reduce using rule 3 (statements -> statement .)
+    IDENT           reduce using rule 3 (statements -> statement .)
+    NUMBER          reduce using rule 3 (statements -> statement .)
+    STRING          reduce using rule 3 (statements -> statement .)
+    BOOL            reduce using rule 3 (statements -> statement .)
+    NOT             reduce using rule 3 (statements -> statement .)
+    LPAREN          reduce using rule 3 (statements -> statement .)
+    $end            reduce using rule 3 (statements -> statement .)
+    DEDENT          reduce using rule 3 (statements -> statement .)
+
+
+state 4
+
+    (5) statement -> if_statement .
+
+    NEWLINE         reduce using rule 5 (statement -> if_statement .)
+    IFF             reduce using rule 5 (statement -> if_statement .)
+    DEF             reduce using rule 5 (statement -> if_statement .)
+    LOP             reduce using rule 5 (statement -> if_statement .)
+    RET             reduce using rule 5 (statement -> if_statement .)
+    IDENT           reduce using rule 5 (statement -> if_statement .)
+    NUMBER          reduce using rule 5 (statement -> if_statement .)
+    STRING          reduce using rule 5 (statement -> if_statement .)
+    BOOL            reduce using rule 5 (statement -> if_statement .)
+    NOT             reduce using rule 5 (statement -> if_statement .)
+    LPAREN          reduce using rule 5 (statement -> if_statement .)
+    $end            reduce using rule 5 (statement -> if_statement .)
+    DEDENT          reduce using rule 5 (statement -> if_statement .)
+
+
+state 5
+
+    (6) statement -> def_statement .
+
+    NEWLINE         reduce using rule 6 (statement -> def_statement .)
+    IFF             reduce using rule 6 (statement -> def_statement .)
+    DEF             reduce using rule 6 (statement -> def_statement .)
+    LOP             reduce using rule 6 (statement -> def_statement .)
+    RET             reduce using rule 6 (statement -> def_statement .)
+    IDENT           reduce using rule 6 (statement -> def_statement .)
+    NUMBER          reduce using rule 6 (statement -> def_statement .)
+    STRING          reduce using rule 6 (statement -> def_statement .)
+    BOOL            reduce using rule 6 (statement -> def_statement .)
+    NOT             reduce using rule 6 (statement -> def_statement .)
+    LPAREN          reduce using rule 6 (statement -> def_statement .)
+    $end            reduce using rule 6 (statement -> def_statement .)
+    DEDENT          reduce using rule 6 (statement -> def_statement .)
+
+
+state 6
+
+    (7) statement -> loop_statement .
+
+    NEWLINE         reduce using rule 7 (statement -> loop_statement .)
+    IFF             reduce using rule 7 (statement -> loop_statement .)
+    DEF             reduce using rule 7 (statement -> loop_statement .)
+    LOP             reduce using rule 7 (statement -> loop_statement .)
+    RET             reduce using rule 7 (statement -> loop_statement .)
+    IDENT           reduce using rule 7 (statement -> loop_statement .)
+    NUMBER          reduce using rule 7 (statement -> loop_statement .)
+    STRING          reduce using rule 7 (statement -> loop_statement .)
+    BOOL            reduce using rule 7 (statement -> loop_statement .)
+    NOT             reduce using rule 7 (statement -> loop_statement .)
+    LPAREN          reduce using rule 7 (statement -> loop_statement .)
+    $end            reduce using rule 7 (statement -> loop_statement .)
+    DEDENT          reduce using rule 7 (statement -> loop_statement .)
+
+
+state 7
+
+    (8) statement -> return_statement .
+
+    NEWLINE         reduce using rule 8 (statement -> return_statement .)
+    IFF             reduce using rule 8 (statement -> return_statement .)
+    DEF             reduce using rule 8 (statement -> return_statement .)
+    LOP             reduce using rule 8 (statement -> return_statement .)
+    RET             reduce using rule 8 (statement -> return_statement .)
+    IDENT           reduce using rule 8 (statement -> return_statement .)
+    NUMBER          reduce using rule 8 (statement -> return_statement .)
+    STRING          reduce using rule 8 (statement -> return_statement .)
+    BOOL            reduce using rule 8 (statement -> return_statement .)
+    NOT             reduce using rule 8 (statement -> return_statement .)
+    LPAREN          reduce using rule 8 (statement -> return_statement .)
+    $end            reduce using rule 8 (statement -> return_statement .)
+    DEDENT          reduce using rule 8 (statement -> return_statement .)
+
+
+state 8
+
+    (9) statement -> expression_statement .
+
+    NEWLINE         reduce using rule 9 (statement -> expression_statement .)
+    IFF             reduce using rule 9 (statement -> expression_statement .)
+    DEF             reduce using rule 9 (statement -> expression_statement .)
+    LOP             reduce using rule 9 (statement -> expression_statement .)
+    RET             reduce using rule 9 (statement -> expression_statement .)
+    IDENT           reduce using rule 9 (statement -> expression_statement .)
+    NUMBER          reduce using rule 9 (statement -> expression_statement .)
+    STRING          reduce using rule 9 (statement -> expression_statement .)
+    BOOL            reduce using rule 9 (statement -> expression_statement .)
+    NOT             reduce using rule 9 (statement -> expression_statement .)
+    LPAREN          reduce using rule 9 (statement -> expression_statement .)
+    $end            reduce using rule 9 (statement -> expression_statement .)
+    DEDENT          reduce using rule 9 (statement -> expression_statement .)
+
+
+state 9
+
+    (10) statement -> function_call .
+
+    NEWLINE         reduce using rule 10 (statement -> function_call .)
+    IFF             reduce using rule 10 (statement -> function_call .)
+    DEF             reduce using rule 10 (statement -> function_call .)
+    LOP             reduce using rule 10 (statement -> function_call .)
+    RET             reduce using rule 10 (statement -> function_call .)
+    IDENT           reduce using rule 10 (statement -> function_call .)
+    NUMBER          reduce using rule 10 (statement -> function_call .)
+    STRING          reduce using rule 10 (statement -> function_call .)
+    BOOL            reduce using rule 10 (statement -> function_call .)
+    NOT             reduce using rule 10 (statement -> function_call .)
+    LPAREN          reduce using rule 10 (statement -> function_call .)
+    $end            reduce using rule 10 (statement -> function_call .)
+    DEDENT          reduce using rule 10 (statement -> function_call .)
+
+
+state 10
+
+    (11) statement -> NEWLINE .
+
+    NEWLINE         reduce using rule 11 (statement -> NEWLINE .)
+    IFF             reduce using rule 11 (statement -> NEWLINE .)
+    DEF             reduce using rule 11 (statement -> NEWLINE .)
+    LOP             reduce using rule 11 (statement -> NEWLINE .)
+    RET             reduce using rule 11 (statement -> NEWLINE .)
+    IDENT           reduce using rule 11 (statement -> NEWLINE .)
+    NUMBER          reduce using rule 11 (statement -> NEWLINE .)
+    STRING          reduce using rule 11 (statement -> NEWLINE .)
+    BOOL            reduce using rule 11 (statement -> NEWLINE .)
+    NOT             reduce using rule 11 (statement -> NEWLINE .)
+    LPAREN          reduce using rule 11 (statement -> NEWLINE .)
+    $end            reduce using rule 11 (statement -> NEWLINE .)
+    DEDENT          reduce using rule 11 (statement -> NEWLINE .)
+
+
+state 11
+
+    (13) if_statement -> IFF . expression block
+    (14) if_statement -> IFF . expression block else_statement
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    IDENT           shift and go to state 24
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 23
+
+state 12
+
+    (34) expression_statement -> expression . NEWLINE
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+
+    NEWLINE         shift and go to state 25
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+
+
+state 13
+
+    (16) def_statement -> DEF . IDENT arg block
+
+    IDENT           shift and go to state 32
+
+
+state 14
+
+    (12) function_call -> IDENT . arg
+    (25) expression -> IDENT .
+    (17) arg -> . IDENT
+    (18) arg -> . IDENT arg
+    (19) arg -> .
+
+  ! reduce/reduce conflict for NEWLINE resolved using rule 19 (arg -> .)
+  ! shift/reduce conflict for IDENT resolved as shift
+    EQUAL           reduce using rule 25 (expression -> IDENT .)
+    PLUS            reduce using rule 25 (expression -> IDENT .)
+    MINUS           reduce using rule 25 (expression -> IDENT .)
+    MUL             reduce using rule 25 (expression -> IDENT .)
+    DIV             reduce using rule 25 (expression -> IDENT .)
+    MODULUS         reduce using rule 25 (expression -> IDENT .)
+    IDENT           shift and go to state 33
+    NEWLINE         reduce using rule 19 (arg -> .)
+    IFF             reduce using rule 19 (arg -> .)
+    DEF             reduce using rule 19 (arg -> .)
+    LOP             reduce using rule 19 (arg -> .)
+    RET             reduce using rule 19 (arg -> .)
+    NUMBER          reduce using rule 19 (arg -> .)
+    STRING          reduce using rule 19 (arg -> .)
+    BOOL            reduce using rule 19 (arg -> .)
+    NOT             reduce using rule 19 (arg -> .)
+    LPAREN          reduce using rule 19 (arg -> .)
+    $end            reduce using rule 19 (arg -> .)
+    DEDENT          reduce using rule 19 (arg -> .)
+
+  ! NEWLINE         [ reduce using rule 25 (expression -> IDENT .) ]
+  ! IDENT           [ reduce using rule 19 (arg -> .) ]
+
+    arg                            shift and go to state 34
+
+state 15
+
+    (20) loop_statement -> LOP . IDENT expression expression block
+
+    IDENT           shift and go to state 35
+
+
+state 16
+
+    (33) return_statement -> RET . expression
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    IDENT           shift and go to state 24
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 36
+
+state 17
+
+    (21) expression -> NUMBER .
+
+    NEWLINE         reduce using rule 21 (expression -> NUMBER .)
+    EQUAL           reduce using rule 21 (expression -> NUMBER .)
+    PLUS            reduce using rule 21 (expression -> NUMBER .)
+    MINUS           reduce using rule 21 (expression -> NUMBER .)
+    MUL             reduce using rule 21 (expression -> NUMBER .)
+    DIV             reduce using rule 21 (expression -> NUMBER .)
+    MODULUS         reduce using rule 21 (expression -> NUMBER .)
+    INDENT          reduce using rule 21 (expression -> NUMBER .)
+    IFF             reduce using rule 21 (expression -> NUMBER .)
+    DEF             reduce using rule 21 (expression -> NUMBER .)
+    LOP             reduce using rule 21 (expression -> NUMBER .)
+    RET             reduce using rule 21 (expression -> NUMBER .)
+    IDENT           reduce using rule 21 (expression -> NUMBER .)
+    NUMBER          reduce using rule 21 (expression -> NUMBER .)
+    STRING          reduce using rule 21 (expression -> NUMBER .)
+    BOOL            reduce using rule 21 (expression -> NUMBER .)
+    NOT             reduce using rule 21 (expression -> NUMBER .)
+    LPAREN          reduce using rule 21 (expression -> NUMBER .)
+    $end            reduce using rule 21 (expression -> NUMBER .)
+    DEDENT          reduce using rule 21 (expression -> NUMBER .)
+    RPAREN          reduce using rule 21 (expression -> NUMBER .)
+
+
+state 18
+
+    (22) expression -> STRING .
+
+    NEWLINE         reduce using rule 22 (expression -> STRING .)
+    EQUAL           reduce using rule 22 (expression -> STRING .)
+    PLUS            reduce using rule 22 (expression -> STRING .)
+    MINUS           reduce using rule 22 (expression -> STRING .)
+    MUL             reduce using rule 22 (expression -> STRING .)
+    DIV             reduce using rule 22 (expression -> STRING .)
+    MODULUS         reduce using rule 22 (expression -> STRING .)
+    INDENT          reduce using rule 22 (expression -> STRING .)
+    IFF             reduce using rule 22 (expression -> STRING .)
+    DEF             reduce using rule 22 (expression -> STRING .)
+    LOP             reduce using rule 22 (expression -> STRING .)
+    RET             reduce using rule 22 (expression -> STRING .)
+    IDENT           reduce using rule 22 (expression -> STRING .)
+    NUMBER          reduce using rule 22 (expression -> STRING .)
+    STRING          reduce using rule 22 (expression -> STRING .)
+    BOOL            reduce using rule 22 (expression -> STRING .)
+    NOT             reduce using rule 22 (expression -> STRING .)
+    LPAREN          reduce using rule 22 (expression -> STRING .)
+    $end            reduce using rule 22 (expression -> STRING .)
+    DEDENT          reduce using rule 22 (expression -> STRING .)
+    RPAREN          reduce using rule 22 (expression -> STRING .)
+
+
+state 19
+
+    (23) expression -> BOOL .
+
+    NEWLINE         reduce using rule 23 (expression -> BOOL .)
+    EQUAL           reduce using rule 23 (expression -> BOOL .)
+    PLUS            reduce using rule 23 (expression -> BOOL .)
+    MINUS           reduce using rule 23 (expression -> BOOL .)
+    MUL             reduce using rule 23 (expression -> BOOL .)
+    DIV             reduce using rule 23 (expression -> BOOL .)
+    MODULUS         reduce using rule 23 (expression -> BOOL .)
+    INDENT          reduce using rule 23 (expression -> BOOL .)
+    IFF             reduce using rule 23 (expression -> BOOL .)
+    DEF             reduce using rule 23 (expression -> BOOL .)
+    LOP             reduce using rule 23 (expression -> BOOL .)
+    RET             reduce using rule 23 (expression -> BOOL .)
+    IDENT           reduce using rule 23 (expression -> BOOL .)
+    NUMBER          reduce using rule 23 (expression -> BOOL .)
+    STRING          reduce using rule 23 (expression -> BOOL .)
+    BOOL            reduce using rule 23 (expression -> BOOL .)
+    NOT             reduce using rule 23 (expression -> BOOL .)
+    LPAREN          reduce using rule 23 (expression -> BOOL .)
+    $end            reduce using rule 23 (expression -> BOOL .)
+    DEDENT          reduce using rule 23 (expression -> BOOL .)
+    RPAREN          reduce using rule 23 (expression -> BOOL .)
+
+
+state 20
+
+    (24) expression -> NOT . expression
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    IDENT           shift and go to state 24
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 37
+
+state 21
+
+    (32) expression -> LPAREN . expression RPAREN
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    IDENT           shift and go to state 24
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 38
+
+state 22
+
+    (4) statements -> statements statement .
+
+    NEWLINE         reduce using rule 4 (statements -> statements statement .)
+    IFF             reduce using rule 4 (statements -> statements statement .)
+    DEF             reduce using rule 4 (statements -> statements statement .)
+    LOP             reduce using rule 4 (statements -> statements statement .)
+    RET             reduce using rule 4 (statements -> statements statement .)
+    IDENT           reduce using rule 4 (statements -> statements statement .)
+    NUMBER          reduce using rule 4 (statements -> statements statement .)
+    STRING          reduce using rule 4 (statements -> statements statement .)
+    BOOL            reduce using rule 4 (statements -> statements statement .)
+    NOT             reduce using rule 4 (statements -> statements statement .)
+    LPAREN          reduce using rule 4 (statements -> statements statement .)
+    $end            reduce using rule 4 (statements -> statements statement .)
+    DEDENT          reduce using rule 4 (statements -> statements statement .)
+
+
+state 23
+
+    (13) if_statement -> IFF expression . block
+    (14) if_statement -> IFF expression . block else_statement
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+    (2) block -> . INDENT statements DEDENT
+
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+    INDENT          shift and go to state 40
+
+    block                          shift and go to state 39
+
+state 24
+
+    (25) expression -> IDENT .
+
+    EQUAL           reduce using rule 25 (expression -> IDENT .)
+    PLUS            reduce using rule 25 (expression -> IDENT .)
+    MINUS           reduce using rule 25 (expression -> IDENT .)
+    MUL             reduce using rule 25 (expression -> IDENT .)
+    DIV             reduce using rule 25 (expression -> IDENT .)
+    MODULUS         reduce using rule 25 (expression -> IDENT .)
+    INDENT          reduce using rule 25 (expression -> IDENT .)
+    NEWLINE         reduce using rule 25 (expression -> IDENT .)
+    IFF             reduce using rule 25 (expression -> IDENT .)
+    DEF             reduce using rule 25 (expression -> IDENT .)
+    LOP             reduce using rule 25 (expression -> IDENT .)
+    RET             reduce using rule 25 (expression -> IDENT .)
+    IDENT           reduce using rule 25 (expression -> IDENT .)
+    NUMBER          reduce using rule 25 (expression -> IDENT .)
+    STRING          reduce using rule 25 (expression -> IDENT .)
+    BOOL            reduce using rule 25 (expression -> IDENT .)
+    NOT             reduce using rule 25 (expression -> IDENT .)
+    LPAREN          reduce using rule 25 (expression -> IDENT .)
+    $end            reduce using rule 25 (expression -> IDENT .)
+    DEDENT          reduce using rule 25 (expression -> IDENT .)
+    RPAREN          reduce using rule 25 (expression -> IDENT .)
+
+
+state 25
+
+    (34) expression_statement -> expression NEWLINE .
+
+    NEWLINE         reduce using rule 34 (expression_statement -> expression NEWLINE .)
+    IFF             reduce using rule 34 (expression_statement -> expression NEWLINE .)
+    DEF             reduce using rule 34 (expression_statement -> expression NEWLINE .)
+    LOP             reduce using rule 34 (expression_statement -> expression NEWLINE .)
+    RET             reduce using rule 34 (expression_statement -> expression NEWLINE .)
+    IDENT           reduce using rule 34 (expression_statement -> expression NEWLINE .)
+    NUMBER          reduce using rule 34 (expression_statement -> expression NEWLINE .)
+    STRING          reduce using rule 34 (expression_statement -> expression NEWLINE .)
+    BOOL            reduce using rule 34 (expression_statement -> expression NEWLINE .)
+    NOT             reduce using rule 34 (expression_statement -> expression NEWLINE .)
+    LPAREN          reduce using rule 34 (expression_statement -> expression NEWLINE .)
+    $end            reduce using rule 34 (expression_statement -> expression NEWLINE .)
+    DEDENT          reduce using rule 34 (expression_statement -> expression NEWLINE .)
+
+
+state 26
+
+    (26) expression -> expression EQUAL . expression
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    IDENT           shift and go to state 24
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 41
+
+state 27
+
+    (27) expression -> expression PLUS . expression
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    IDENT           shift and go to state 24
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 42
+
+state 28
+
+    (28) expression -> expression MINUS . expression
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    IDENT           shift and go to state 24
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 43
+
+state 29
+
+    (29) expression -> expression MUL . expression
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    IDENT           shift and go to state 24
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 44
+
+state 30
+
+    (30) expression -> expression DIV . expression
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    IDENT           shift and go to state 24
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 45
+
+state 31
+
+    (31) expression -> expression MODULUS . expression
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    IDENT           shift and go to state 24
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 46
+
+state 32
+
+    (16) def_statement -> DEF IDENT . arg block
+    (17) arg -> . IDENT
+    (18) arg -> . IDENT arg
+    (19) arg -> .
+
+    IDENT           shift and go to state 33
+    INDENT          reduce using rule 19 (arg -> .)
+
+    arg                            shift and go to state 47
+
+state 33
+
+    (17) arg -> IDENT .
+    (18) arg -> IDENT . arg
+    (17) arg -> . IDENT
+    (18) arg -> . IDENT arg
+    (19) arg -> .
+
+  ! shift/reduce conflict for IDENT resolved as shift
+  ! reduce/reduce conflict for NEWLINE resolved using rule 17 (arg -> IDENT .)
+  ! reduce/reduce conflict for IFF resolved using rule 17 (arg -> IDENT .)
+  ! reduce/reduce conflict for DEF resolved using rule 17 (arg -> IDENT .)
+  ! reduce/reduce conflict for LOP resolved using rule 17 (arg -> IDENT .)
+  ! reduce/reduce conflict for RET resolved using rule 17 (arg -> IDENT .)
+  ! shift/reduce conflict for IDENT resolved as shift
+  ! reduce/reduce conflict for NUMBER resolved using rule 17 (arg -> IDENT .)
+  ! reduce/reduce conflict for STRING resolved using rule 17 (arg -> IDENT .)
+  ! reduce/reduce conflict for BOOL resolved using rule 17 (arg -> IDENT .)
+  ! reduce/reduce conflict for NOT resolved using rule 17 (arg -> IDENT .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 17 (arg -> IDENT .)
+  ! reduce/reduce conflict for $end resolved using rule 17 (arg -> IDENT .)
+  ! reduce/reduce conflict for DEDENT resolved using rule 17 (arg -> IDENT .)
+  ! reduce/reduce conflict for INDENT resolved using rule 17 (arg -> IDENT .)
+    NEWLINE         reduce using rule 17 (arg -> IDENT .)
+    IFF             reduce using rule 17 (arg -> IDENT .)
+    DEF             reduce using rule 17 (arg -> IDENT .)
+    LOP             reduce using rule 17 (arg -> IDENT .)
+    RET             reduce using rule 17 (arg -> IDENT .)
+    NUMBER          reduce using rule 17 (arg -> IDENT .)
+    STRING          reduce using rule 17 (arg -> IDENT .)
+    BOOL            reduce using rule 17 (arg -> IDENT .)
+    NOT             reduce using rule 17 (arg -> IDENT .)
+    LPAREN          reduce using rule 17 (arg -> IDENT .)
+    $end            reduce using rule 17 (arg -> IDENT .)
+    DEDENT          reduce using rule 17 (arg -> IDENT .)
+    INDENT          reduce using rule 17 (arg -> IDENT .)
+    IDENT           shift and go to state 33
+
+  ! IDENT           [ reduce using rule 17 (arg -> IDENT .) ]
+  ! NEWLINE         [ reduce using rule 19 (arg -> .) ]
+  ! IFF             [ reduce using rule 19 (arg -> .) ]
+  ! DEF             [ reduce using rule 19 (arg -> .) ]
+  ! LOP             [ reduce using rule 19 (arg -> .) ]
+  ! RET             [ reduce using rule 19 (arg -> .) ]
+  ! IDENT           [ reduce using rule 19 (arg -> .) ]
+  ! NUMBER          [ reduce using rule 19 (arg -> .) ]
+  ! STRING          [ reduce using rule 19 (arg -> .) ]
+  ! BOOL            [ reduce using rule 19 (arg -> .) ]
+  ! NOT             [ reduce using rule 19 (arg -> .) ]
+  ! LPAREN          [ reduce using rule 19 (arg -> .) ]
+  ! $end            [ reduce using rule 19 (arg -> .) ]
+  ! DEDENT          [ reduce using rule 19 (arg -> .) ]
+  ! INDENT          [ reduce using rule 19 (arg -> .) ]
+
+    arg                            shift and go to state 48
+
+state 34
+
+    (12) function_call -> IDENT arg .
+
+    NEWLINE         reduce using rule 12 (function_call -> IDENT arg .)
+    IFF             reduce using rule 12 (function_call -> IDENT arg .)
+    DEF             reduce using rule 12 (function_call -> IDENT arg .)
+    LOP             reduce using rule 12 (function_call -> IDENT arg .)
+    RET             reduce using rule 12 (function_call -> IDENT arg .)
+    IDENT           reduce using rule 12 (function_call -> IDENT arg .)
+    NUMBER          reduce using rule 12 (function_call -> IDENT arg .)
+    STRING          reduce using rule 12 (function_call -> IDENT arg .)
+    BOOL            reduce using rule 12 (function_call -> IDENT arg .)
+    NOT             reduce using rule 12 (function_call -> IDENT arg .)
+    LPAREN          reduce using rule 12 (function_call -> IDENT arg .)
+    $end            reduce using rule 12 (function_call -> IDENT arg .)
+    DEDENT          reduce using rule 12 (function_call -> IDENT arg .)
+
+
+state 35
+
+    (20) loop_statement -> LOP IDENT . expression expression block
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    IDENT           shift and go to state 24
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 49
+
+state 36
+
+    (33) return_statement -> RET expression .
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+
+    NEWLINE         reduce using rule 33 (return_statement -> RET expression .)
+    IFF             reduce using rule 33 (return_statement -> RET expression .)
+    DEF             reduce using rule 33 (return_statement -> RET expression .)
+    LOP             reduce using rule 33 (return_statement -> RET expression .)
+    RET             reduce using rule 33 (return_statement -> RET expression .)
+    IDENT           reduce using rule 33 (return_statement -> RET expression .)
+    NUMBER          reduce using rule 33 (return_statement -> RET expression .)
+    STRING          reduce using rule 33 (return_statement -> RET expression .)
+    BOOL            reduce using rule 33 (return_statement -> RET expression .)
+    NOT             reduce using rule 33 (return_statement -> RET expression .)
+    LPAREN          reduce using rule 33 (return_statement -> RET expression .)
+    $end            reduce using rule 33 (return_statement -> RET expression .)
+    DEDENT          reduce using rule 33 (return_statement -> RET expression .)
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+
+
+state 37
+
+    (24) expression -> NOT expression .
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MODULUS resolved as shift
+    NEWLINE         reduce using rule 24 (expression -> NOT expression .)
+    INDENT          reduce using rule 24 (expression -> NOT expression .)
+    IFF             reduce using rule 24 (expression -> NOT expression .)
+    DEF             reduce using rule 24 (expression -> NOT expression .)
+    LOP             reduce using rule 24 (expression -> NOT expression .)
+    RET             reduce using rule 24 (expression -> NOT expression .)
+    IDENT           reduce using rule 24 (expression -> NOT expression .)
+    NUMBER          reduce using rule 24 (expression -> NOT expression .)
+    STRING          reduce using rule 24 (expression -> NOT expression .)
+    BOOL            reduce using rule 24 (expression -> NOT expression .)
+    NOT             reduce using rule 24 (expression -> NOT expression .)
+    LPAREN          reduce using rule 24 (expression -> NOT expression .)
+    $end            reduce using rule 24 (expression -> NOT expression .)
+    DEDENT          reduce using rule 24 (expression -> NOT expression .)
+    RPAREN          reduce using rule 24 (expression -> NOT expression .)
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+
+  ! EQUAL           [ reduce using rule 24 (expression -> NOT expression .) ]
+  ! PLUS            [ reduce using rule 24 (expression -> NOT expression .) ]
+  ! MINUS           [ reduce using rule 24 (expression -> NOT expression .) ]
+  ! MUL             [ reduce using rule 24 (expression -> NOT expression .) ]
+  ! DIV             [ reduce using rule 24 (expression -> NOT expression .) ]
+  ! MODULUS         [ reduce using rule 24 (expression -> NOT expression .) ]
+
+
+state 38
+
+    (32) expression -> LPAREN expression . RPAREN
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+
+    RPAREN          shift and go to state 50
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+
+
+state 39
+
+    (13) if_statement -> IFF expression block .
+    (14) if_statement -> IFF expression block . else_statement
+    (15) else_statement -> . ELS block
+
+    NEWLINE         reduce using rule 13 (if_statement -> IFF expression block .)
+    IFF             reduce using rule 13 (if_statement -> IFF expression block .)
+    DEF             reduce using rule 13 (if_statement -> IFF expression block .)
+    LOP             reduce using rule 13 (if_statement -> IFF expression block .)
+    RET             reduce using rule 13 (if_statement -> IFF expression block .)
+    IDENT           reduce using rule 13 (if_statement -> IFF expression block .)
+    NUMBER          reduce using rule 13 (if_statement -> IFF expression block .)
+    STRING          reduce using rule 13 (if_statement -> IFF expression block .)
+    BOOL            reduce using rule 13 (if_statement -> IFF expression block .)
+    NOT             reduce using rule 13 (if_statement -> IFF expression block .)
+    LPAREN          reduce using rule 13 (if_statement -> IFF expression block .)
+    $end            reduce using rule 13 (if_statement -> IFF expression block .)
+    DEDENT          reduce using rule 13 (if_statement -> IFF expression block .)
+    ELS             shift and go to state 52
+
+    else_statement                 shift and go to state 51
+
+state 40
+
+    (2) block -> INDENT . statements DEDENT
+    (3) statements -> . statement
+    (4) statements -> . statements statement
+    (5) statement -> . if_statement
+    (6) statement -> . def_statement
+    (7) statement -> . loop_statement
+    (8) statement -> . return_statement
+    (9) statement -> . expression_statement
+    (10) statement -> . function_call
+    (11) statement -> . NEWLINE
+    (13) if_statement -> . IFF expression block
+    (14) if_statement -> . IFF expression block else_statement
+    (16) def_statement -> . DEF IDENT arg block
+    (20) loop_statement -> . LOP IDENT expression expression block
+    (33) return_statement -> . RET expression
+    (34) expression_statement -> . expression NEWLINE
+    (12) function_call -> . IDENT arg
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    NEWLINE         shift and go to state 10
+    IFF             shift and go to state 11
+    DEF             shift and go to state 13
+    LOP             shift and go to state 15
+    RET             shift and go to state 16
+    IDENT           shift and go to state 14
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    LPAREN          shift and go to state 21
+
+    statements                     shift and go to state 53
+    statement                      shift and go to state 3
+    if_statement                   shift and go to state 4
+    def_statement                  shift and go to state 5
+    loop_statement                 shift and go to state 6
+    return_statement               shift and go to state 7
+    expression_statement           shift and go to state 8
+    function_call                  shift and go to state 9
+    expression                     shift and go to state 12
+
+state 41
+
+    (26) expression -> expression EQUAL expression .
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MODULUS resolved as shift
+    NEWLINE         reduce using rule 26 (expression -> expression EQUAL expression .)
+    INDENT          reduce using rule 26 (expression -> expression EQUAL expression .)
+    IFF             reduce using rule 26 (expression -> expression EQUAL expression .)
+    DEF             reduce using rule 26 (expression -> expression EQUAL expression .)
+    LOP             reduce using rule 26 (expression -> expression EQUAL expression .)
+    RET             reduce using rule 26 (expression -> expression EQUAL expression .)
+    IDENT           reduce using rule 26 (expression -> expression EQUAL expression .)
+    NUMBER          reduce using rule 26 (expression -> expression EQUAL expression .)
+    STRING          reduce using rule 26 (expression -> expression EQUAL expression .)
+    BOOL            reduce using rule 26 (expression -> expression EQUAL expression .)
+    NOT             reduce using rule 26 (expression -> expression EQUAL expression .)
+    LPAREN          reduce using rule 26 (expression -> expression EQUAL expression .)
+    $end            reduce using rule 26 (expression -> expression EQUAL expression .)
+    DEDENT          reduce using rule 26 (expression -> expression EQUAL expression .)
+    RPAREN          reduce using rule 26 (expression -> expression EQUAL expression .)
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+
+  ! EQUAL           [ reduce using rule 26 (expression -> expression EQUAL expression .) ]
+  ! PLUS            [ reduce using rule 26 (expression -> expression EQUAL expression .) ]
+  ! MINUS           [ reduce using rule 26 (expression -> expression EQUAL expression .) ]
+  ! MUL             [ reduce using rule 26 (expression -> expression EQUAL expression .) ]
+  ! DIV             [ reduce using rule 26 (expression -> expression EQUAL expression .) ]
+  ! MODULUS         [ reduce using rule 26 (expression -> expression EQUAL expression .) ]
+
+
+state 42
+
+    (27) expression -> expression PLUS expression .
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MODULUS resolved as shift
+    NEWLINE         reduce using rule 27 (expression -> expression PLUS expression .)
+    INDENT          reduce using rule 27 (expression -> expression PLUS expression .)
+    IFF             reduce using rule 27 (expression -> expression PLUS expression .)
+    DEF             reduce using rule 27 (expression -> expression PLUS expression .)
+    LOP             reduce using rule 27 (expression -> expression PLUS expression .)
+    RET             reduce using rule 27 (expression -> expression PLUS expression .)
+    IDENT           reduce using rule 27 (expression -> expression PLUS expression .)
+    NUMBER          reduce using rule 27 (expression -> expression PLUS expression .)
+    STRING          reduce using rule 27 (expression -> expression PLUS expression .)
+    BOOL            reduce using rule 27 (expression -> expression PLUS expression .)
+    NOT             reduce using rule 27 (expression -> expression PLUS expression .)
+    LPAREN          reduce using rule 27 (expression -> expression PLUS expression .)
+    $end            reduce using rule 27 (expression -> expression PLUS expression .)
+    DEDENT          reduce using rule 27 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 27 (expression -> expression PLUS expression .)
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+
+  ! EQUAL           [ reduce using rule 27 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ reduce using rule 27 (expression -> expression PLUS expression .) ]
+  ! MINUS           [ reduce using rule 27 (expression -> expression PLUS expression .) ]
+  ! MUL             [ reduce using rule 27 (expression -> expression PLUS expression .) ]
+  ! DIV             [ reduce using rule 27 (expression -> expression PLUS expression .) ]
+  ! MODULUS         [ reduce using rule 27 (expression -> expression PLUS expression .) ]
+
+
+state 43
+
+    (28) expression -> expression MINUS expression .
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MODULUS resolved as shift
+    NEWLINE         reduce using rule 28 (expression -> expression MINUS expression .)
+    INDENT          reduce using rule 28 (expression -> expression MINUS expression .)
+    IFF             reduce using rule 28 (expression -> expression MINUS expression .)
+    DEF             reduce using rule 28 (expression -> expression MINUS expression .)
+    LOP             reduce using rule 28 (expression -> expression MINUS expression .)
+    RET             reduce using rule 28 (expression -> expression MINUS expression .)
+    IDENT           reduce using rule 28 (expression -> expression MINUS expression .)
+    NUMBER          reduce using rule 28 (expression -> expression MINUS expression .)
+    STRING          reduce using rule 28 (expression -> expression MINUS expression .)
+    BOOL            reduce using rule 28 (expression -> expression MINUS expression .)
+    NOT             reduce using rule 28 (expression -> expression MINUS expression .)
+    LPAREN          reduce using rule 28 (expression -> expression MINUS expression .)
+    $end            reduce using rule 28 (expression -> expression MINUS expression .)
+    DEDENT          reduce using rule 28 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 28 (expression -> expression MINUS expression .)
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+
+  ! EQUAL           [ reduce using rule 28 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ reduce using rule 28 (expression -> expression MINUS expression .) ]
+  ! MINUS           [ reduce using rule 28 (expression -> expression MINUS expression .) ]
+  ! MUL             [ reduce using rule 28 (expression -> expression MINUS expression .) ]
+  ! DIV             [ reduce using rule 28 (expression -> expression MINUS expression .) ]
+  ! MODULUS         [ reduce using rule 28 (expression -> expression MINUS expression .) ]
+
+
+state 44
+
+    (29) expression -> expression MUL expression .
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MODULUS resolved as shift
+    NEWLINE         reduce using rule 29 (expression -> expression MUL expression .)
+    INDENT          reduce using rule 29 (expression -> expression MUL expression .)
+    IFF             reduce using rule 29 (expression -> expression MUL expression .)
+    DEF             reduce using rule 29 (expression -> expression MUL expression .)
+    LOP             reduce using rule 29 (expression -> expression MUL expression .)
+    RET             reduce using rule 29 (expression -> expression MUL expression .)
+    IDENT           reduce using rule 29 (expression -> expression MUL expression .)
+    NUMBER          reduce using rule 29 (expression -> expression MUL expression .)
+    STRING          reduce using rule 29 (expression -> expression MUL expression .)
+    BOOL            reduce using rule 29 (expression -> expression MUL expression .)
+    NOT             reduce using rule 29 (expression -> expression MUL expression .)
+    LPAREN          reduce using rule 29 (expression -> expression MUL expression .)
+    $end            reduce using rule 29 (expression -> expression MUL expression .)
+    DEDENT          reduce using rule 29 (expression -> expression MUL expression .)
+    RPAREN          reduce using rule 29 (expression -> expression MUL expression .)
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+
+  ! EQUAL           [ reduce using rule 29 (expression -> expression MUL expression .) ]
+  ! PLUS            [ reduce using rule 29 (expression -> expression MUL expression .) ]
+  ! MINUS           [ reduce using rule 29 (expression -> expression MUL expression .) ]
+  ! MUL             [ reduce using rule 29 (expression -> expression MUL expression .) ]
+  ! DIV             [ reduce using rule 29 (expression -> expression MUL expression .) ]
+  ! MODULUS         [ reduce using rule 29 (expression -> expression MUL expression .) ]
+
+
+state 45
+
+    (30) expression -> expression DIV expression .
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MODULUS resolved as shift
+    NEWLINE         reduce using rule 30 (expression -> expression DIV expression .)
+    INDENT          reduce using rule 30 (expression -> expression DIV expression .)
+    IFF             reduce using rule 30 (expression -> expression DIV expression .)
+    DEF             reduce using rule 30 (expression -> expression DIV expression .)
+    LOP             reduce using rule 30 (expression -> expression DIV expression .)
+    RET             reduce using rule 30 (expression -> expression DIV expression .)
+    IDENT           reduce using rule 30 (expression -> expression DIV expression .)
+    NUMBER          reduce using rule 30 (expression -> expression DIV expression .)
+    STRING          reduce using rule 30 (expression -> expression DIV expression .)
+    BOOL            reduce using rule 30 (expression -> expression DIV expression .)
+    NOT             reduce using rule 30 (expression -> expression DIV expression .)
+    LPAREN          reduce using rule 30 (expression -> expression DIV expression .)
+    $end            reduce using rule 30 (expression -> expression DIV expression .)
+    DEDENT          reduce using rule 30 (expression -> expression DIV expression .)
+    RPAREN          reduce using rule 30 (expression -> expression DIV expression .)
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+
+  ! EQUAL           [ reduce using rule 30 (expression -> expression DIV expression .) ]
+  ! PLUS            [ reduce using rule 30 (expression -> expression DIV expression .) ]
+  ! MINUS           [ reduce using rule 30 (expression -> expression DIV expression .) ]
+  ! MUL             [ reduce using rule 30 (expression -> expression DIV expression .) ]
+  ! DIV             [ reduce using rule 30 (expression -> expression DIV expression .) ]
+  ! MODULUS         [ reduce using rule 30 (expression -> expression DIV expression .) ]
+
+
+state 46
+
+    (31) expression -> expression MODULUS expression .
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MODULUS resolved as shift
+    NEWLINE         reduce using rule 31 (expression -> expression MODULUS expression .)
+    INDENT          reduce using rule 31 (expression -> expression MODULUS expression .)
+    IFF             reduce using rule 31 (expression -> expression MODULUS expression .)
+    DEF             reduce using rule 31 (expression -> expression MODULUS expression .)
+    LOP             reduce using rule 31 (expression -> expression MODULUS expression .)
+    RET             reduce using rule 31 (expression -> expression MODULUS expression .)
+    IDENT           reduce using rule 31 (expression -> expression MODULUS expression .)
+    NUMBER          reduce using rule 31 (expression -> expression MODULUS expression .)
+    STRING          reduce using rule 31 (expression -> expression MODULUS expression .)
+    BOOL            reduce using rule 31 (expression -> expression MODULUS expression .)
+    NOT             reduce using rule 31 (expression -> expression MODULUS expression .)
+    LPAREN          reduce using rule 31 (expression -> expression MODULUS expression .)
+    $end            reduce using rule 31 (expression -> expression MODULUS expression .)
+    DEDENT          reduce using rule 31 (expression -> expression MODULUS expression .)
+    RPAREN          reduce using rule 31 (expression -> expression MODULUS expression .)
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+
+  ! EQUAL           [ reduce using rule 31 (expression -> expression MODULUS expression .) ]
+  ! PLUS            [ reduce using rule 31 (expression -> expression MODULUS expression .) ]
+  ! MINUS           [ reduce using rule 31 (expression -> expression MODULUS expression .) ]
+  ! MUL             [ reduce using rule 31 (expression -> expression MODULUS expression .) ]
+  ! DIV             [ reduce using rule 31 (expression -> expression MODULUS expression .) ]
+  ! MODULUS         [ reduce using rule 31 (expression -> expression MODULUS expression .) ]
+
+
+state 47
+
+    (16) def_statement -> DEF IDENT arg . block
+    (2) block -> . INDENT statements DEDENT
+
+    INDENT          shift and go to state 40
+
+    block                          shift and go to state 54
+
+state 48
+
+    (18) arg -> IDENT arg .
+
+    NEWLINE         reduce using rule 18 (arg -> IDENT arg .)
+    IFF             reduce using rule 18 (arg -> IDENT arg .)
+    DEF             reduce using rule 18 (arg -> IDENT arg .)
+    LOP             reduce using rule 18 (arg -> IDENT arg .)
+    RET             reduce using rule 18 (arg -> IDENT arg .)
+    IDENT           reduce using rule 18 (arg -> IDENT arg .)
+    NUMBER          reduce using rule 18 (arg -> IDENT arg .)
+    STRING          reduce using rule 18 (arg -> IDENT arg .)
+    BOOL            reduce using rule 18 (arg -> IDENT arg .)
+    NOT             reduce using rule 18 (arg -> IDENT arg .)
+    LPAREN          reduce using rule 18 (arg -> IDENT arg .)
+    $end            reduce using rule 18 (arg -> IDENT arg .)
+    DEDENT          reduce using rule 18 (arg -> IDENT arg .)
+    INDENT          reduce using rule 18 (arg -> IDENT arg .)
+
+
+state 49
+
+    (20) loop_statement -> LOP IDENT expression . expression block
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    IDENT           shift and go to state 24
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 55
+
+state 50
+
+    (32) expression -> LPAREN expression RPAREN .
+
+    NEWLINE         reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    EQUAL           reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    MUL             reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    DIV             reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    MODULUS         reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    INDENT          reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    IFF             reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    DEF             reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    LOP             reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    RET             reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    IDENT           reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    NUMBER          reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    STRING          reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    BOOL            reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    NOT             reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    LPAREN          reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    DEDENT          reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 32 (expression -> LPAREN expression RPAREN .)
+
+
+state 51
+
+    (14) if_statement -> IFF expression block else_statement .
+
+    NEWLINE         reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+    IFF             reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+    DEF             reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+    LOP             reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+    RET             reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+    IDENT           reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+    NUMBER          reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+    STRING          reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+    BOOL            reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+    NOT             reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+    LPAREN          reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+    $end            reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+    DEDENT          reduce using rule 14 (if_statement -> IFF expression block else_statement .)
+
+
+state 52
+
+    (15) else_statement -> ELS . block
+    (2) block -> . INDENT statements DEDENT
+
+    INDENT          shift and go to state 40
+
+    block                          shift and go to state 56
+
+state 53
+
+    (2) block -> INDENT statements . DEDENT
+    (4) statements -> statements . statement
+    (5) statement -> . if_statement
+    (6) statement -> . def_statement
+    (7) statement -> . loop_statement
+    (8) statement -> . return_statement
+    (9) statement -> . expression_statement
+    (10) statement -> . function_call
+    (11) statement -> . NEWLINE
+    (13) if_statement -> . IFF expression block
+    (14) if_statement -> . IFF expression block else_statement
+    (16) def_statement -> . DEF IDENT arg block
+    (20) loop_statement -> . LOP IDENT expression expression block
+    (33) return_statement -> . RET expression
+    (34) expression_statement -> . expression NEWLINE
+    (12) function_call -> . IDENT arg
+    (21) expression -> . NUMBER
+    (22) expression -> . STRING
+    (23) expression -> . BOOL
+    (24) expression -> . NOT expression
+    (25) expression -> . IDENT
+    (26) expression -> . expression EQUAL expression
+    (27) expression -> . expression PLUS expression
+    (28) expression -> . expression MINUS expression
+    (29) expression -> . expression MUL expression
+    (30) expression -> . expression DIV expression
+    (31) expression -> . expression MODULUS expression
+    (32) expression -> . LPAREN expression RPAREN
+
+    DEDENT          shift and go to state 57
+    NEWLINE         shift and go to state 10
+    IFF             shift and go to state 11
+    DEF             shift and go to state 13
+    LOP             shift and go to state 15
+    RET             shift and go to state 16
+    IDENT           shift and go to state 14
+    NUMBER          shift and go to state 17
+    STRING          shift and go to state 18
+    BOOL            shift and go to state 19
+    NOT             shift and go to state 20
+    LPAREN          shift and go to state 21
+
+    statement                      shift and go to state 22
+    if_statement                   shift and go to state 4
+    def_statement                  shift and go to state 5
+    loop_statement                 shift and go to state 6
+    return_statement               shift and go to state 7
+    expression_statement           shift and go to state 8
+    function_call                  shift and go to state 9
+    expression                     shift and go to state 12
+
+state 54
+
+    (16) def_statement -> DEF IDENT arg block .
+
+    NEWLINE         reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+    IFF             reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+    DEF             reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+    LOP             reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+    RET             reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+    IDENT           reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+    NUMBER          reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+    STRING          reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+    BOOL            reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+    NOT             reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+    LPAREN          reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+    $end            reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+    DEDENT          reduce using rule 16 (def_statement -> DEF IDENT arg block .)
+
+
+state 55
+
+    (20) loop_statement -> LOP IDENT expression expression . block
+    (26) expression -> expression . EQUAL expression
+    (27) expression -> expression . PLUS expression
+    (28) expression -> expression . MINUS expression
+    (29) expression -> expression . MUL expression
+    (30) expression -> expression . DIV expression
+    (31) expression -> expression . MODULUS expression
+    (2) block -> . INDENT statements DEDENT
+
+    EQUAL           shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    MUL             shift and go to state 29
+    DIV             shift and go to state 30
+    MODULUS         shift and go to state 31
+    INDENT          shift and go to state 40
+
+    block                          shift and go to state 58
+
+state 56
+
+    (15) else_statement -> ELS block .
+
+    NEWLINE         reduce using rule 15 (else_statement -> ELS block .)
+    IFF             reduce using rule 15 (else_statement -> ELS block .)
+    DEF             reduce using rule 15 (else_statement -> ELS block .)
+    LOP             reduce using rule 15 (else_statement -> ELS block .)
+    RET             reduce using rule 15 (else_statement -> ELS block .)
+    IDENT           reduce using rule 15 (else_statement -> ELS block .)
+    NUMBER          reduce using rule 15 (else_statement -> ELS block .)
+    STRING          reduce using rule 15 (else_statement -> ELS block .)
+    BOOL            reduce using rule 15 (else_statement -> ELS block .)
+    NOT             reduce using rule 15 (else_statement -> ELS block .)
+    LPAREN          reduce using rule 15 (else_statement -> ELS block .)
+    $end            reduce using rule 15 (else_statement -> ELS block .)
+    DEDENT          reduce using rule 15 (else_statement -> ELS block .)
+
+
+state 57
+
+    (2) block -> INDENT statements DEDENT .
+
+    ELS             reduce using rule 2 (block -> INDENT statements DEDENT .)
+    NEWLINE         reduce using rule 2 (block -> INDENT statements DEDENT .)
+    IFF             reduce using rule 2 (block -> INDENT statements DEDENT .)
+    DEF             reduce using rule 2 (block -> INDENT statements DEDENT .)
+    LOP             reduce using rule 2 (block -> INDENT statements DEDENT .)
+    RET             reduce using rule 2 (block -> INDENT statements DEDENT .)
+    IDENT           reduce using rule 2 (block -> INDENT statements DEDENT .)
+    NUMBER          reduce using rule 2 (block -> INDENT statements DEDENT .)
+    STRING          reduce using rule 2 (block -> INDENT statements DEDENT .)
+    BOOL            reduce using rule 2 (block -> INDENT statements DEDENT .)
+    NOT             reduce using rule 2 (block -> INDENT statements DEDENT .)
+    LPAREN          reduce using rule 2 (block -> INDENT statements DEDENT .)
+    $end            reduce using rule 2 (block -> INDENT statements DEDENT .)
+    DEDENT          reduce using rule 2 (block -> INDENT statements DEDENT .)
+
+
+state 58
+
+    (20) loop_statement -> LOP IDENT expression expression block .
+
+    NEWLINE         reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+    IFF             reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+    DEF             reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+    LOP             reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+    RET             reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+    IDENT           reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+    NUMBER          reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+    STRING          reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+    BOOL            reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+    NOT             reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+    LPAREN          reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+    $end            reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+    DEDENT          reduce using rule 20 (loop_statement -> LOP IDENT expression expression block .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for IDENT in state 14 resolved as shift
+WARNING: shift/reduce conflict for IDENT in state 33 resolved as shift
+WARNING: shift/reduce conflict for IDENT in state 33 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 37 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 37 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 37 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 37 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 37 resolved as shift
+WARNING: shift/reduce conflict for MODULUS in state 37 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 41 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 41 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 41 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 41 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 41 resolved as shift
+WARNING: shift/reduce conflict for MODULUS in state 41 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 42 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 42 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 42 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 42 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 42 resolved as shift
+WARNING: shift/reduce conflict for MODULUS in state 42 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 43 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 43 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 43 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 43 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 43 resolved as shift
+WARNING: shift/reduce conflict for MODULUS in state 43 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 44 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 44 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 44 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 44 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 44 resolved as shift
+WARNING: shift/reduce conflict for MODULUS in state 44 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 45 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 45 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 45 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 45 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 45 resolved as shift
+WARNING: shift/reduce conflict for MODULUS in state 45 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 46 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 46 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 46 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 46 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 46 resolved as shift
+WARNING: shift/reduce conflict for MODULUS in state 46 resolved as shift
+WARNING: reduce/reduce conflict in state 14 resolved using rule (arg -> <empty>)
+WARNING: rejected rule (expression -> IDENT) in state 14
+WARNING: reduce/reduce conflict in state 33 resolved using rule (arg -> IDENT)
+WARNING: rejected rule (arg -> <empty>) in state 33

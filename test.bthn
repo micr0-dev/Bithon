@@ -1,0 +1,19 @@
+prn "Enter a number:"
+inp num
+iff not num eql 0
+    prn "The factorial is:"
+    prn fac num
+els
+    prn "Entered number is zero, factorial is 1"
+prn "Printing numbers from 1 to entered number:"
+pnt num
+
+def fac n
+    iff n eql 0
+        ret 1
+    els
+        ret n * fac n not 1
+
+def pnt n
+    lop i 1 n
+        prn i
