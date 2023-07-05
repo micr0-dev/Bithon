@@ -1,0 +1,5 @@
+digraph {
+	0 [label=c_program]
+	0.0 [label=c_env_call]
+	0 -> 0.0
+}
