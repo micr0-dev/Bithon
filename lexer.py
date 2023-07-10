@@ -1,4 +1,4 @@
-import ply.lex as lex
+import lex
 
 reserved = {
     "iff": "IFF",
@@ -65,11 +65,14 @@ def t_NEWLINE(t):
                 break
         except IndexError:
             break
+    t.lexer.indents_count = t.lexer.indents_count // t.lexer.indentwidth
     if t.lexer.indents_count > t.lexer.indents[-1]:  # It is an indent
         t.type = "INDENT"
+        t.value = abs(t.lexer.indents_count - t.lexer.indents[-1])
         t.lexer.indents.append(t.lexer.indents_count)
     elif t.lexer.indents_count < t.lexer.indents[-1]:  # It is a dedent
         t.type = "DEDENT"
+        t.value = abs(t.lexer.indents_count - t.lexer.indents[-1])
         t.lexer.indents.pop()
     return t
 
@@ -86,9 +89,10 @@ def t_error(t):
 
 
 def t_eof(t):
-    if len(lexer.indents) > 1:
-        lexer.indents.pop()
+    if t.lexer.indents_count > 0:
         t.type = "DEDENT"
+        t.value = abs(t.lexer.indents_count - t.lexer.indents[-1])
+        t.lexer.indents_count = 0
         return t
     else:
         return None
@@ -97,3 +101,4 @@ def t_eof(t):
 lexer = lex.lex()
 lexer.indents = [0]
 lexer.indents_count = 0
+lexer.indentwidth = 4

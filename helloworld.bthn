@@ -1,2 +1,11 @@
-lop i 1 10 pow 8
-    i div 9
+prn is_prime 4
+prn is_prime 7
+prn is_prime 9
+
+def is_prime num
+    set i 2
+    lop i 1 num
+        prn i
+        iff num % i = 0
+            ret false
+    ret true

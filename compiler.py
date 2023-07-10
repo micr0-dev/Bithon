@@ -1,7 +1,8 @@
-import ply.yacc as yacc
+import yacc
 from lexer import tokens
 from lexer import lexer
-import textwrap
+
+print(yacc)
 
 tokens = tokens
 
@@ -35,7 +36,7 @@ class c_program:
             if not isinstance(statement, c_def_statement):
                 code.append(statement.transpile(environment, indentation))
 
-        return "\n".join(genQueue + code)
+        return "\n".join(code)
 
     def tree(self):
         tree = [c_program]
@@ -82,6 +83,7 @@ class c_env_call:
 
     def transpile(self, environment, indentation):
         if self.name not in environment:
+            print(self.name, environment)
             environment[self.name] = None
             genQueue.append(f"{self.name} = None")
         func = environment[self.name]
@@ -108,9 +110,13 @@ class c_varible_call:
 
     def transpile(self, environment, indentation):
         if self.name not in environment:
+            print(self.name, environment)
             environment[self.name] = None
             genQueue.append(f"{self.name} = None")
         return self.name
+
+    def tree(self):
+        return [c_varible_call, self.name]
 
 
 class c_function_call:
@@ -127,8 +133,7 @@ class c_function_call:
 
     def transpile(self, environment, indentation):
         args = [arg.transpile(environment, indentation) for arg in self.arguments]
-        if self.name in environment:
-            return f"{environment[self.name].__name__}({', '.join(args)})"
+        return f"{environment[self.name].__name__}({', '.join(args)})"
 
 
 class c_string:
@@ -172,7 +177,7 @@ class c_bool:
         return self.value
 
     def transpile(self, environment, indentation):
-        return self.value
+        return str(self.value)
 
     def tree(self):
         return [c_bool, self.value]
@@ -194,12 +199,15 @@ class c_block:
         indent_str = "\t" * indentation
 
         code = []
+        genQueueOldLen = len(genQueue)
         for statement in self.statements:
             # Pass the current indentation level to each statement's transpile method
             code.append(statement.transpile(environment, indentation))
 
         # Prefix each line of code with the indentation string
-        return indent_str + ("\n" + indent_str).join(code)
+        return indent_str + ("\n" + indent_str).join(
+            genQueue[genQueueOldLen - 1 :] + code
+        )
 
     def tree(self):
         tree = []
@@ -510,23 +518,24 @@ class c_def_statement:
         def func(*args):
             new_environment = environment.copy()
             for param, arg in zip(self.parameters, args):
-                new_environment[param] = arg
+                new_environment[param.name] = arg
             return self.block.execute(new_environment)
 
         environment[self.name] = func
 
     def transpile(self, environment, indentation):
-        def func(*args):
-            return
-
-        environment[self.name] = func
-        param_names = [param for param in self.parameters]
+        environment[self.name] = type(self.name, (), {})
+        param_names = [param.name for param in self.parameters]
+        # Add all the parameters to the environment
+        for param in param_names:
+            environment[param] = None
         param_names_str = ", ".join(param_names)
         body = self.block.transpile(environment, indentation)
         return f"def {self.name}({param_names_str}):\n{body}"
 
     def tree(self):
-        return [c_def_statement, self.name, self.parameters, self.block.tree()]
+        param_names = [param.tree() for param in self.parameters]
+        return [c_def_statement, param_names, self.block.tree()]
 
 
 class c_return_statement:
@@ -777,8 +786,23 @@ print("\n")
 
 lexer.input(code)
 
+tokenQueue = []
+
+
+def get_token():
+    token = lexer.token()
+    if not token:
+        return token
+    if (token.type == "INDENT" or token.type == "DEDENT") and token.value > 1:
+        for i in range(token.value):
+            tokenQueue.append(token)
+    else:
+        tokenQueue.append(token)
+    return tokenQueue.pop(0)
+
+
 while True:
-    tok = lexer.token()
+    tok = get_token()
     if not tok:
         break
     print(tok)
@@ -841,9 +865,9 @@ ASTree = program_ast.tree()
 
 print_ast(ASTree)
 
-print(color.BOLD + "\n  -\tExecution: " + color.END)
+# print(color.BOLD + "\n  -\tExecution: " + color.END)
 
-program_ast.execute(ExecEnv)
+# program_ast.execute(ExecEnv)
 
 
 print(color.BOLD + "\n  -\tTranspiled Python Code: " + color.END)
@@ -853,6 +877,6 @@ TranspilerEnv = BuiltInEnv.copy()
 pythonCode = program_ast.transpile(TranspilerEnv)
 print(pythonCode)
 
-print(color.BOLD + "\n  -\tPython Code Execution:" + color.END)
+print(color.BOLD + "\n  -\tExecution:" + color.END)
 
 exec(pythonCode)
